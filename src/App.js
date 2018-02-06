@@ -35,7 +35,7 @@ class App extends Component {
             chatDisp: true,
             chatBar: true
         })
-        this.socket = mySocket("https://advdynacont.herokuapp.com/");
+        this.socket = mySocket("https://dynacontsocket.herokuapp.com/");
         this.socket.emit("username", this.state.username);
         
         this.socket.on("usersjoined", (data)=>{
