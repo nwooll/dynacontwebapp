@@ -95,10 +95,9 @@ class App extends Component {
       
       if(this.state.mode === 0){
           config = (
-            <div>
+            <div id='joinCont'>
             <input type="text" placeholder="Type Username" id='userNameInput'onChange={this.handleUsername}/>
-            <button onClick={this.joinChat}> Join Chat</button>
-
+            <button onClick={this.joinChat} id='joinBtn'> Join Chat</button>
         </div>
       ) 
       
@@ -106,7 +105,7 @@ class App extends Component {
           var allChats = this.state.allChat.map((obj,i)=>{
               return(
               <div key={i}>
-              {obj}
+              <div id='msgs'>{obj}</div>
               </div>
               )
           });
@@ -114,8 +113,8 @@ class App extends Component {
           <div id="chatBox" className={"chatBarHidden" + chatBarShow}>
               
               <div id="controls" >
-              <input type='text' placeholder='type your msg' onChange={this.handleMyMsg} />
               <button onClick={this.sendChat} className="chatBtn">send chat</button>
+              <input  id="msginput" type='text' placeholder='type your msg' onChange={this.handleMyMsg} />
               </div>
               </div>
           )
@@ -130,38 +129,36 @@ class App extends Component {
     })  
     
     return (
-      <div>
+        <div>
+        
         <div id="chatBox" >
         {config}
         </div>
-       
-        
+        
         <div>
-        
-    
-    <div>
+        <div>
         
-        
+        <div id='nameAll'>
         <div id='nameCont' className="nameCont">
-        Users in the chatroom right now!
+        <h1>Chatroom Users</h1>
         <hr />
         <div id='name' className='name'>
-        {allUsers}
+        <h2>{allUsers}</h2>
+        </div>
         </div>
         </div>
         
         <div id='layer1' className={"bg-layer" + bgChange}>
-            
-            
         <img src={layer1}/>
         <img src={layer2}/>
- <div id='chatDisplay' className= {"chatBoxHidden" + chatBoxShow}>
-              {allChats}
-              </div>
         </div>
         
+        <div id='chatDisplay' className= {"chatBoxHidden" + chatBoxShow}>
+        <h3>{allChats}</h3>
+        </div>
         
         <div>
+        
         <div className='rain'></div>
         <div className='rain'></div>
         <div className='rain'></div>
@@ -192,10 +189,10 @@ class App extends Component {
         <div className='rain'></div>
         <div className='rain'></div>
         <div className='rain'></div>
-        </div>
-
-      </div>
-    
+        
+            </div>
+        
+          </div>
         </div>
       </div>
     );
