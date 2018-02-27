@@ -69,12 +69,19 @@ body {
 }
 
 .nameCont {
-    display: flex;
-    flex-direction: column;
-    width: 90vw;
+    display: none;
+}
+
+.nameContShow{
+	position: absolute;
+	margin: auto;
+	top: 10vh;
+	left: 10vw;
+    width: 30vw;
     overflow-y: scroll;
     border-radius: 6px;
     z-index: -2;
+	display: block;
 }
 
 #name {
@@ -101,8 +108,7 @@ body {
     border-style: solid;
     border-color: #fff;
     margin-right: 5vw;
-    margin-top: -95vh;
-    width: 60vw;
+    width: 50vw;
     height: 36rem;
     overflow-y: scroll;
     transition: 1s;
@@ -158,6 +164,30 @@ body {
     transition-duration: 0.4s;
     cursor: pointer;
 }
+
+.stickerRooms{
+	display: none;
+}
+
+.stickerRoomsShow{
+	position: absolute;
+	margin: auto;
+	bottom: 10vh;
+	left: 10vw;
+	width: 30vw;
+	display: block;
+}
+
+.stickerPage{
+	display: none;
+}
+
+.stickerPageShow{
+	display: block;
+}
+
+
+/*RAIN*/
 
 .rain {
     background: white;
@@ -848,3 +878,42 @@ body {
         top: 96%;
     }
 }
+
+
+
+
+
+STICKER PAGE
+
+.div1{
+	position: fixed;
+	margin: auto;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(168, 78, 78, 0.75);
+	cursor: none;
+}
+
+.div2{
+	position: fixed;
+	margin: auto;
+	width: 20vw;
+	height: 20vh;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(154, 168, 78, 0.75);
+	border-radius: 6px;
+	border: 5px solid rgba(220, 242, 99, 0.84)
+}
+
+/*
+#img1{
+	position: absolute;
+}
+
+.allImgs{
+	position: absolute;
+}
+*/
