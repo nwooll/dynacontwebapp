@@ -219,7 +219,11 @@ class App extends Component {
           config = (
             <div id='joinCont'>
             <input type="text" placeholder="Type Username" id='userNameInput'onChange={this.handleUsername}/>
+<<<<<<< HEAD
             <button onClick={this.joinChat} id='joinBtn'>Join Chat</button>
+=======
+            <button onClick={this.joinChat} id='joinBtn'> Join Chat</button>
+>>>>>>> origin/master
         </div>
       ) 
       
@@ -293,10 +297,13 @@ class App extends Component {
     return (
         <div>
         
+<<<<<<< HEAD
 		<div id="stickerPage" className={"stickerPage" + stickerPageShow}>
 		{comp}
 		</div>
 		
+=======
+>>>>>>> origin/master
         <div id="chatBox" >
         {config}
         </div>
@@ -305,7 +312,11 @@ class App extends Component {
         <div>
         
         <div id='nameAll'>
+<<<<<<< HEAD
         <div id='nameCont' className={"nameCont" + nameContShow}>
+=======
+        <div id='nameCont' className="nameCont">
+>>>>>>> origin/master
         <h1>Chatroom Users</h1>
         <hr />
         <div id='name' className='name'>
@@ -335,6 +346,7 @@ class App extends Component {
 		
 		
         <div>
+        
         <div className='rain'></div>
         <div className='rain'></div>
         <div className='rain'></div>
