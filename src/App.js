@@ -103,7 +103,7 @@ class App extends Component {
 			
 		})
 		
-		this.socket = mySocket("http://localhost:10001");
+		this.socket = mySocket("https://dynacontsocket.herokuapp.com/");
 		
 		this.socket.on("createimage", (data)=>{
 			this.setState({
