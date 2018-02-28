@@ -276,7 +276,7 @@ class App extends Component {
 	  }else{
 		   comp = (
 		  <div>
-		  <div ref="thedisplay" className="div1">
+		  <div className="div1">
 				{allimages}
 			   	{stickers}
 		</div>
@@ -293,7 +293,7 @@ class App extends Component {
     return (
         <div>
         
-		<div id="stickerPage" className={"stickerPage" + stickerPageShow}>
+		<div ref="thedisplay" id="stickerPage" className={"stickerPage" + stickerPageShow}>
 		{comp}
 		</div>
 		
