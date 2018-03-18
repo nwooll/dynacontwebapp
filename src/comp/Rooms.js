@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import mySocket from "socket.io-client";
 
-class App extends Component {
+class Rooms extends Component {
 	constructor(props){
 		super(props);
 		this.state={
@@ -20,7 +20,7 @@ class App extends Component {
   render() {
 	 
     return (
-      <div className="App">
+      <div>
 		<button onClick={this.props.changePage.bind(this,"room1")}>Room 1</button>
 		<button onClick={this.props.changePage.bind(this,"room2")}>Room 2</button>
       </div>
@@ -28,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Rooms;
