@@ -178,8 +178,11 @@ body {
 	display: block;
 }
 
+
+
 .stickerPage{
 	display: none;
+
 	
 }
 
@@ -189,6 +192,18 @@ body {
 	width: 100vw;
 }
 
+.quizPage{
+    display: none;
+}
+
+.quizPageShow{
+	display: block;
+	height: 100vh;
+    width: 100vw;
+    z-index: 103;
+    background-color: red;
+	
+}
 
 /*RAIN*/
 

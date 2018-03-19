@@ -21,13 +21,18 @@ class App extends Component {
 			nameCont : false,
 			sBtnCont: false,
 			sPage: false,
+			qPage: false,
 			
 			myImg:require("./imgs/hair.gif"),
 			myImg2:require("./imgs/1.gif"),
 			allUsers:[],
 			myId: null,
 			showDisplay:false,
-			stickers:[]
+			stickers:[],
+
+			stage:0,
+			host:null,
+			qobj:{q:null, o1:null, o2:null}
         }
         this.joinChat = this.joinChat.bind(this);
         this.handleUsername = this.handleUsername.bind(this);
@@ -37,6 +42,8 @@ class App extends Component {
 		
 		this.handleImage = this.handleImage.bind(this);
 		this.changePage = this.changePage.bind(this);
+
+		this.showQuizPage = this.showQuizPage.bind(this);
     }
     
     componentDidMount(){
@@ -94,15 +101,15 @@ class App extends Component {
 	showStickerPage(){
 		this.setState({
 			sPage: true,
-			 bgPos: false,
+			bgPos: false,
             chatDisp: false,
             chatBar: false,
 			nameCont: false,
 			sBtnCont: false,
-			mode: 0
+			mode: 0,
 			
 		})
-		
+
 		this.socket = mySocket("https://dynacontsocket.herokuapp.com/");
 		
 		this.socket.on("createimage", (data)=>{
@@ -111,13 +118,16 @@ class App extends Component {
 			});
 			
 			this.refs.thedisplay.addEventListener("mousemove", (ev)=>{
-		
+			
 			if(this.state.myId == null){
 				return false;
 			}
 			this.refs["u"+this.state.myId].style.left = ev.pageX+"px";
 			this.refs["u"+this.state.myId].style.top = ev.pageY+"px";
 			
+				console.log(this.refs["u"+this.state.myId].style.left, this.refs["u"+this.state.myId].style.top)
+				
+				
 			this.socket.emit("mymove", {
 				x:ev.pageX,
 				y:ev.pageY,
@@ -158,10 +168,9 @@ class App extends Component {
 		});
 		
 	}
-	
 
-	
-	
+//sticker functions
+
 	handleImage(evt){
 		this.refs["u"+this.state.myId].src = evt.target.src;
 	}
@@ -173,10 +182,84 @@ class App extends Component {
 		
 		this.socket.emit("joinroom", roomString);
 	}
+
+	// Quiz functions
+
+	showQuizPage(){
+		
+		this.setState({
+			qPage: true,
+			stage: 0,
+			sPage: false,
+			bgPos: false,
+			chatDisp: false,
+			chatBar: false,
+			nameCont: false,
+			sBtnCont: false,
+			mode: 0
+			
+			
+		})
+
+		this.socket = mySocket("https://dynacontsocket.herokuapp.com/");
+		
+		this.socket.on("newq", (data)=>{
+			this.setState({
+				qobj:data	
+			})
+			
+		});
+		
+		this.socket.on("result", (data)=>{
+			alert(data);
+		})
+		
+	}
+
+	handleStage = (num,roomStr)=>{
+		this.setState({
+			stage:num
+		});
+		
+		this.socket.emit("joinroom2", roomStr);
+	}
+		
+	
+	handlePlayers = (isHost) =>{
+		this.setState({
+			host:isHost,
+			stage:2
+		})
+	}
+	
+	handleQuestion = () =>{
+		var obj = {
+			q:this.refs.q.value,
+			o1:this.refs.o1.value,
+			o2:this.refs.o2.value,
+			a:this.refs.a.value
+		};
+		
+		this.socket.emit("qsubmit", obj);
+		
+		this.refs.q.value = "";
+		this.refs.o1.value = "";
+		this.refs.o2.value = "";
+	}
+	
+	handleAnswer = (num) =>{
+		this.socket.emit("answer", num);
+	};
+	
+	
+
 	
     
   render() {
-      
+	  
+	
+	// Toggle CSS Classes
+
       var chatBarShow = "";
       
       if(this.state.chatBar === true){
@@ -205,6 +288,12 @@ class App extends Component {
 	  
 	  if(this.state.sPage === true){
 		  stickerPageShow = " stickerPageShow";
+	  }
+
+	  var quizPageShow = "";
+
+	  if(this.state.qPage === true){
+		  quizPageShow = " quizPageShow";
 	  }
 	  
       var bgChange = "";
@@ -289,6 +378,58 @@ class App extends Component {
 			   );
 	  }
 	  
+
+
+	  //NewNew shit
+
+	  var comp2 = null;
+
+	  
+	  if(this.state.stage === 0){
+		comp2 = (
+			<div>
+			  <button onClick={this.handleStage.bind(this, 1, "room1")}>Room 1</button>
+			  <button onClick={this.handleStage.bind(this, 1, "room2")}>Room 2</button>
+		  </div>
+			
+		);
+		}else if(this.state.stage ===  1){
+			comp2 = (
+			<div>
+			  <button onClick={this.handlePlayers.bind(this, true)}>HOST</button>
+			  <button onClick={this.handlePlayers.bind(this, false)}>PLAYER</button>
+		  </div>
+			
+		);
+		  }
+		else if(this.state.stage === 2){
+			if(this.state.host ===true){
+				comp2 = (
+			<div>
+			  <input ref="q" type="text" placeholder="Type your question here" />
+			  <input ref="o1" type="text" placeholder="Option 1" />
+			  <input ref="o2" type="text" placeholder="Option 2" />
+			  <select ref="a">
+					<option value="1">Option 1</option>
+					<option value="2">Option 2</option>
+			  </select>
+			  <button onClick={this.handleQuestion}>Submit Question</button>
+		  </div>  
+		);
+			}
+			else if(this.state.host === false){
+				comp2 = (
+			<div>
+			  <div>{this.state.qobj.q}</div>
+			  <button onClick = {this.handleAnswer.bind(this, "1")}>{this.state.qobj.o1}</button>
+			  <button onClick = {this.handleAnswer.bind(this, "2")}>{this.state.qobj.o2}</button>
+		  </div>
+			
+		);
+			}
+		}
+	  
+	 
     
     return (
         <div>
@@ -296,6 +437,10 @@ class App extends Component {
 		<div ref="thedisplay" id="stickerPage" className={"stickerPage" + stickerPageShow}>
 		{comp}
 		</div>
+
+		<div id="quizPage" className={"quizPage" + quizPageShow}>
+		{comp2}
+     	</div>
 		
         <div id="chatBox" >
         {config}
@@ -327,7 +472,7 @@ class App extends Component {
 		<div id='stickerRooms' className={"stickerRooms" + stickerRoomsShow}>
 		
 		<button onClick={this.showStickerPage}>Sticker Time</button>
-		
+		<button onClick={this.showQuizPage}>Quiz Time</button>
 		</div>
 		
 		
