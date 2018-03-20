@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import mySocket from 'socket.io-client';
-import './css/Comment.css';
+import postcard from '../imgs/postcard.jpg';
+import '../css/Comment.css';
 
 class Comment extends Component {
     constructor(props){
@@ -45,23 +46,30 @@ class Comment extends Component {
 	  
 	  
     return (
-      <div>
-		<div className='theImg'>
-		</div>
-        <div>
-       what do you think about this photo?
-		</div>
+      <div className='commAll'>
+		
+		<h1>Add Something to The Postcard!</h1>
 		
         <div className='commentCont'>
         <div className='comments'>
-        {allComments}
+		
+		<div className='h1Post'>
+		<h1>Rainforest Postcard</h1>
+		</div>
+		
+		<div className='thecomments'>
+        <h2>{allComments}</h2>
+		</div>
+		
         </div>
+		
+		<img src={postcard} className='imgPost'/>
 		</div>
 		
 		<div className='addComment'>
-            <input type="text" placeholder="Type comment" id='commentInput'onChange={this.handleComment}/>
-            <button onClick={this.addComment}>add comment</button>
-        </div>
+            <textarea type="text" placeholder="type your post" id='commentInput'onChange={this.handleComment} className='postInput'/>
+            <button onClick={this.addComment} className='addBtn'>add post</button>
+        	</div>
       </div>
     );
 

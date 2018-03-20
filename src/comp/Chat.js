@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import layer1 from '../imgs/layer1.png';
-import layer2 from '../imgs/layer2.png';
-import '../App.css';
+import layer1 from '../imgs/bg2-02.png';
+import layer2 from '../imgs/bg1-01.png';
+import '../css/Chat.css';
 import mySocket from 'socket.io-client';
 
 class Chat extends Component {
@@ -120,26 +120,30 @@ class Chat extends Component {
       
       if(this.state.mode === 0){
           config = (
-            <div id='joinCont'>
-            <input type="text" placeholder="Type Username" id='userNameInput'onChange={this.handleUsername}/>
-            <button onClick={this.joinChat} id='joinBtn'>Join Chat</button>
+			<div className='allChat'>
+			<h1>Welcome to the Chat Page!</h1>
+			<h2>Enter You Name to Begin</h2>  
+            <div className='joinCont'>
+            <input type="text" placeholder="Type Username" className='userNameInput'onChange={this.handleUsername}/>
+            <button onClick={this.joinChat} className='joinBtn'>Join Chat</button>
         </div>
+		</div>
       ) 
       
       } else if(this.state.mode === 1){
           var allChats = this.state.allChat.map((obj,i)=>{
               return(
               <div key={i}>
-              <div id='msgs'>{obj}</div>
+              <div className='msgs'>{obj}</div>
               </div>
               )
           });
           config = (
-          <div id="chatBox" className={"chatBarHidden" + chatBarShow}>
+          <div className="chatBox" className={"chatBarHidden" + chatBarShow}>
               
-              <div id="controls" >
+              <div className="controls" >
               <button onClick={this.sendChat} className="chatBtn">send chat</button>
-              <input  id="msginput" type='text' placeholder='type your msg' onChange={this.handleMyMsg} />
+              <input  className="msginput" type='text' placeholder='type your msg' onChange={this.handleMyMsg} />
               </div>
               </div>
           )
@@ -156,29 +160,28 @@ class Chat extends Component {
     return (
         <div>
 		
-        <div id="chatBox" >
+        <div>
         {config}
         </div>
         
         <div>
         <div>
         
-        <div id='nameAll'>
-        <div id='nameCont' className={"nameCont" + nameContShow}>
-        <h1>Chatroom Users</h1>
-        <hr />
-        <div id='name' className='name'>
+        <div className='nameAll'>
+        <div className='nameCont' className={"nameCont" + nameContShow}>
+        <h1>Chat Users</h1>
+        <div className='name'>
         <h2>{allUsers}</h2>
         </div>
         </div>
         </div>
         
-        <div id='layer1' className={"bg-layer" + bgChange}>
+        <div className='layer1' className={"bg-layer" + bgChange}>
         <img src={layer1}/>
         <img src={layer2}/>
         </div>
         
-        <div id='chatDisplay' className= {"chatBoxHidden" + chatBoxShow}>
+        <div className='chatDisplay' className= {"chatBoxHidden" + chatBoxShow}>
         <h3>{allChats}</h3>
         </div>
         

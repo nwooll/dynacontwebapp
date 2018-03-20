@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../App.css';
 import mySocket from 'socket.io-client';
+import '../css/Quiz.css';
 
 class Quiz extends Component {
  constructor(props){
@@ -69,17 +69,24 @@ class Quiz extends Component {
 	  
 	  if(this.state.stage === 0){
 	  comp2 = (
-	  	<div>
+	  	<div className='qaAll'>
+		  <h1>Welcome to the Quiz Page!</h1>
+			<h2>Enter a Room to Begin</h2>
+		  	<div className="qaNavBtns">
 			<button onClick={this.handleStage.bind(this, 1, "room1")}>Room 1</button>
 			<button onClick={this.handleStage.bind(this, 1, "room2")}>Room 2</button>
+			</div>
 		</div>
 		  
 	  );
 	  }else if(this.state.stage ===  1){
 		  comp2 = (
-	  	<div>
-			<button onClick={this.handlePlayers.bind(this, true)}>HOST</button>
-			<button onClick={this.handlePlayers.bind(this, false)}>PLAYER</button>
+	  	<div className='qaAll'>
+			<h1>Would You Like to Ask or Answer Questions?</h1>
+			<div className="qaNavBtns">
+			<button onClick={this.handlePlayers.bind(this, true)}>Ask</button>
+			<button onClick={this.handlePlayers.bind(this, false)}>Answer</button>
+			</div>
 		</div>
 		  
 	  );
@@ -87,13 +94,15 @@ class Quiz extends Component {
 	  else if(this.state.stage === 2){
 		  if(this.state.host ===true){
 			  comp2 = (
-	  	<div>
-			<input ref="q" type="text" placeholder="Type your question here" />
-			<input ref="o1" type="text" placeholder="Option 1" />
-			<input ref="o2" type="text" placeholder="Option 2" />
+	  	<div className='qaAll'>
+		 <h1>Type a Question Then Enter One Right Answer and One Wrong Answer</h1>
+			<input  className='qaInput' ref="q" type="text" placeholder="Your Question" />
+			<input className='qaInput' ref="o1" type="text" placeholder="Possible Answer 1" />
+			<input className='qaInput' ref="o2" type="text" placeholder="Possible Answer 2" />
+		<h2>Now Select Which Answer is Correct</h2>
 			<select ref="a">
-				  <option value="1">Option 1</option>
-				  <option value="2">Option 2</option>
+				  <option className='option' value="1">Answer 1</option>
+				  <option className='option' value="2">Answer 2</option>
 			</select>
 			<button onClick={this.handleQuestion}>Submit Question</button>
 		</div>  
@@ -101,10 +110,12 @@ class Quiz extends Component {
 		  }
 		  else if(this.state.host === false){
 			  comp2 = (
-	  	<div>
-			<div>{this.state.qobj.q}</div>
+	  	<div className='qaAll'>
+			<h1><div>{this.state.qobj.q}</div></h1>
+		<div className='buttonAns'>
 			<button onClick = {this.handleAnswer.bind(this, "1")}>{this.state.qobj.o1}</button>
 			<button onClick = {this.handleAnswer.bind(this, "2")}>{this.state.qobj.o2}</button>
+			</div>
 		</div>
 		  
 	  );

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Control from "./comp/Control"
+import Control from "./comp/Control.js";
+import Home from "./comp/Home.js";
 import Chat from './comp/Chat.js';
 import Stickers from './comp/Stickers.js';
 import Quiz from './comp/Quiz.js';
 import Comment from './comp/Comment.js';
 import mySocket from 'socket.io-client';
-import './App.css';
+import './css/App.css';
 
 class App extends Component {
     
@@ -13,20 +14,33 @@ class App extends Component {
         super(props);
         
          this.state ={
+			showHome: true,
 			showPage1: false,
 			showPage2: false,
             showPage3: false,
 			showPage4: false,
         }
         
+		this.changeHome = this.changeHome.bind(this);
 		this.changePage4 = this.changePage4.bind(this);
         this.changePage3 = this.changePage3.bind(this);
         this.changePage2 = this.changePage2.bind(this);
         this.changePage1 = this.changePage1.bind(this);
     }
     
+	changeHome(show){
+        this.setState({
+			showHome: show,
+            showPage1: false,
+            showPage2: false,
+			showPage3: false,
+			showPage4: false,
+        })
+    }
+	
     changePage1(show){
         this.setState({
+			showHome: false,
             showPage1: show,
             showPage2: false,
 			showPage3: false,
@@ -36,6 +50,7 @@ class App extends Component {
     
      changePage2(show){
         this.setState({
+			showHome: false,
             showPage1: false,
             showPage2: show,
 			showPage3: false,
@@ -45,6 +60,7 @@ class App extends Component {
 	
 	 changePage3(show){
         this.setState({
+			showHome: false,
             showPage1: false,
             showPage2: false,
 			showPage3: show,
@@ -54,6 +70,7 @@ class App extends Component {
 	
 	 changePage4(show){
         this.setState({
+			showHome: false,
             showPage1: false,
             showPage2: false,
 			showPage3: false,
@@ -64,8 +81,10 @@ class App extends Component {
   render() {
       
       var mycomp = null;
-      
-      if(this.state.showPage1 === true){
+      if(this.state.showHome === true){
+		  mycomp = <Home />
+	  }
+      else if(this.state.showPage1 === true){
           mycomp = <Chat />      
       }
        else if(this.state.showPage2 === true){
@@ -81,7 +100,8 @@ class App extends Component {
       
     return (
       <div className="App">
-        <Control 
+        <Control
+		changeHome={this.changeHome}
         changePage1={this.changePage1}
         changePage2={this.changePage2}
 		changePage3={this.changePage3}

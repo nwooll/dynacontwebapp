@@ -1,0 +1,46 @@
+.allStick {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+	margin-top: 2rem;
+}
+
+.stkNavBtns {
+	display: flex;
+	flex-direction: row;
+}
+
+.stkNavBtns > button {}
+
+.div1 {
+	position: fixed;
+	margin: auto;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(168, 78, 78, 0.75);
+	cursor: none;
+}
+
+.div2 {
+	position: fixed;
+	margin: auto;
+	width: 20vw;
+	height: 20vh;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(154, 168, 78, 0.75);
+	border-radius: 6px;
+	border: 5px solid rgba(220, 242, 99, 0.84)
+}
+
+.img1 {
+	position: absolute;
+}
+
+.allImgs {
+	position: absolute;
+}

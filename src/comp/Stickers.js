@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import '../App.css';
 import mySocket from "socket.io-client";
 import Rooms from './Rooms';
+import '../css/Stickers.css';
 
 class Stickers extends Component {
 	constructor(props){
 		super(props);
 		this.state={
-			myImg:require("../imgs/1.png"),
-			myImg2:require("../imgs/2.png"),
+			myImg:require("../imgs/tucan.png"),
+			myImg2:require("../imgs/palmtree.png"),
 			allUsers:[],
 			myId: null,
 			showDisplay:false,
@@ -16,7 +16,6 @@ class Stickers extends Component {
 		}
 		
 		this.handleImage = this.handleImage.bind(this);
-		
 		this.changePage = this.changePage.bind(this);
 	}
 	
@@ -69,7 +68,6 @@ class Stickers extends Component {
 		
 		
 		this.socket.on("usermove", (data)=>{
-			console.log("user has moved");
 			this.refs["u"+data.id].style.top = data.y+"px";
 			this.refs["u"+data.id].style.left = data.x+"px";
 			this.refs["u"+data.id].src = data.img;
@@ -95,7 +93,7 @@ class Stickers extends Component {
 	  
 	  var allimages = this.state.allUsers.map((obj,i)=>{
 		  return (
-		  	<img ref={"u"+obj} key={i} height={150} className="allImgs" src={this.state.myImg} />
+		  	<img ref={"u"+obj} key={i} className="allImgs" src={this.state.myImg} height={80}/>
 		  )
 	  })
 	  
@@ -104,7 +102,7 @@ class Stickers extends Component {
 		  var mstyle = {left:obj.x, top:obj.y}
 		  return (
 			  
-			  <img className="allImgs" style={mstyle} src={obj.src} key={i} height = {50} />
+			  <img className="allImgs" style={mstyle} src={obj.src} key={i} height={80}/>
 		  )
 	  })
 	  var comp = null;
@@ -114,25 +112,30 @@ class Stickers extends Component {
 		  changePage={this.changePage}
 		  />
 	  }else{
-		   comp = (
+		 comp = (
 		  <div>
-		  <div ref="thedisplay" className="div1">
+		  <div ref="thedisplay" >
 				{allimages}
 			   	{stickers}
 		</div>
-		<div className="div2">
+		<div className='stkPick'>
+			<h1>Pick a Sticker!</h1>
+			 <div className='stkPickStk'>
+			<img src={this.state.myImg} onClick={this.handleImage} height={50}/>
+			<img src={this.state.myImg2} onClick={this.handleImage} height={50}/>
+			 
+			 
+			 <div>
+			 <h2>Your User ID</h2>
 			{this.state.myId}
-			<img src={this.state.myImg} height={50} onClick={this.handleImage} />
-			<img src={this.state.myImg2} height={50} onClick={this.handleImage} />
-		</div>
-		  </div>
+			 </div>
+			 
+			 
+			 </div>
+		   </div>
+		 </div>
 			   );
 	  }
-	  
-	 
-	  
-	  
-	  
     return (
       <div className="App">
 			{comp}

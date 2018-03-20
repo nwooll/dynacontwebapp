@@ -1,0 +1,45 @@
+.qaAll {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+	margin-top: 2rem;
+}
+
+.qaAll > button {}
+
+select {
+	background-color: #fff;
+	color: #118A55;
+	font-size: 1rem;
+	border: none;
+	border-radius: .6rem;
+	padding-left: 1rem;
+	width: 10rem;
+	height: 2.5rem;
+}
+
+.option {}
+
+.qaInput {
+	margin: .3rem;
+}
+
+input::placeholder {}
+
+.buttonAns {
+	display: flex;
+	flex-direction: row;
+}
+
+.buttonAns > button {
+	margin: .3rem;
+}
+
+.qaNavBtns {
+	display: flex;
+	flex-direction: row;
+}
+
+.qaNavBtns > button {}

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import LogoR from '../imgs/R.png';
+import '../css/App.css';
 
 class Control extends Component {
     constructor(props){
         super(props);
         
+		this.changeHome = this.changeHome.bind(this);
         this.changePage4 = this.changePage4.bind(this);
         this.changePage3 = this.changePage3.bind(this);
         this.changePage2 = this.changePage2.bind(this);
@@ -11,6 +14,9 @@ class Control extends Component {
         
     }
 	
+	changeHome(){
+		this.props.changeHome(true);
+	}
 	
     changePage1(){
         this.props.changePage1(true);
@@ -31,15 +37,21 @@ class Control extends Component {
     
   render() {
     return (
-        
-      <div>
-        
+		<div className='all'>
+        <div className='navHome'>
+		<button onClick = {this.changeHome}>
+		<img src={LogoR} className='logoR'/>
+		</button>
+		</div>
+		
+      	<div className='navBtns'>
         <button onClick = {this.changePage1}> Chat </button>
         <button onClick = {this.changePage2}> Stickers </button>
         <button onClick = {this.changePage3}> Quiz </button>
 		<button onClick = {this.changePage4}> Comment </button>
-        
-      </div>
+		</div>
+		
+		</div>
         
     );
   }
