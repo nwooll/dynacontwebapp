@@ -1,0 +1,23 @@
+.theImg {
+	background-color: #CAB;
+	width: 20rem;
+	height: 10rem;
+}
+
+.addComment {
+	display: flex;
+	position: absolute;
+}
+
+.commentCont {
+	display: flex;
+	flex-direction: column;
+	background-color: aqua;
+	width: 20rem;
+	height: 20rem;
+}
+
+.comments {
+	display: flex;
+	flex-direction: column;
+}
