@@ -47,7 +47,7 @@ input::placeholder {
 body {
 	margin: 0;
 	background-image: url(../imgs/background.jpg);
-	background-size: 100vw;
+	background-size: 110vw;
 	background-position: center top;
 	overflow: hidden;
 }
@@ -101,7 +101,7 @@ button {
 
 @media only screen and (max-width: 1200px) {
 	body {
-		background-size: 75rem;
+		background-size: 80rem;
 		
 	}
 	

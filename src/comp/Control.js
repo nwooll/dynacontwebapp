@@ -48,7 +48,7 @@ class Control extends Component {
         <button onClick = {this.changePage1}> Chat </button>
         <button onClick = {this.changePage2}> Stickers </button>
         <button onClick = {this.changePage3}> Quiz </button>
-		<button onClick = {this.changePage4}> Comment </button>
+		<button onClick = {this.changePage4}> Postcard </button>
 		</div>
 		
 		</div>
