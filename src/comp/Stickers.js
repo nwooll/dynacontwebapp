@@ -139,9 +139,9 @@ class Stickers extends Component {
     return (
       <div className="App">
 			
-		<div class="div1">
+		
 		{comp}
-		</div>
+		
       </div>
     );
   }
