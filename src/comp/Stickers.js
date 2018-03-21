@@ -141,7 +141,7 @@ class Stickers extends Component {
 			
 		<div class="div1">
 		{comp}
-      </div	>
+      </div>
     );
   }
 }
