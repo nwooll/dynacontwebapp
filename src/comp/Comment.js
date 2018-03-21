@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import mySocket from 'socket.io-client';
-import postcard from '../imgs/postcard.jpg';
+import postcard from '../imgs/postcard.png';
 import '../css/Comment.css';
 
 class Comment extends Component {
