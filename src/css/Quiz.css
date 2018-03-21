@@ -43,3 +43,7 @@ input::placeholder {}
 }
 
 .qaNavBtns > button {}
+
+.submitBtn {
+	width: 13rem;
+}

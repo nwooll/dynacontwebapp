@@ -104,7 +104,7 @@ class Quiz extends Component {
 				  <option className='option' value="1">Answer 1</option>
 				  <option className='option' value="2">Answer 2</option>
 			</select>
-			<button onClick={this.handleQuestion}>Submit Question</button>
+			<button onClick={this.handleQuestion} className='submitBtn'>Submit Question</button>
 		</div>  
 	  );
 		  }
