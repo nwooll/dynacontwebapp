@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+	import React, { Component } from 'react';
 import mySocket from "socket.io-client";
 import Rooms from './Rooms';
 import '../css/Stickers.css';
@@ -138,8 +138,10 @@ class Stickers extends Component {
 	  }
     return (
       <div className="App">
-			{comp}
-      </div>
+			
+		<div class="div1">
+		{comp}
+      </div	>
     );
   }
 }
